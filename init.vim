@@ -8,17 +8,18 @@ endif
 
 call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'sheerun/vim-polyglot'
+Plug 'github/copilot.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'janko/vim-test'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
-
 
 
 " -----------------------------------------------------------------------------
@@ -44,34 +45,50 @@ set encoding=utf-8
 set spelllang=en_us
 set linebreak 
 
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set autoindent
+set expandtab
+
 set ignorecase
 set smartindent 
 set gdefault 
 set smartcase 
 set signcolumn=yes
-set directory=~/tmp,/var/tmp,/tmp
+set directory=/tmp//,.
 
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
 
 
 " .............................................................................
-" scrooloose/nerdtree
+" scrooloose/netrw
 " .............................................................................
-nnoremap <C-n> :NERDTree<CR>
 
-" Open nerdtree window on opening Vim
-autocmd VimEnter * NERDTree
-
-" Refresh the current folder if any changes
-autocmd BufEnter NERD_tree_* | execute 'normal R'
-au CursorHold * if exists("t:NerdTreeBufName") | call <SNR>15_refreshRoot() | endif
-
-"Reload the window if directory is changed
-augroup DIRCHANGE
-    au!
-    autocmd DirChanged global :NERDTreeCWD
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
 augroup END
 
-"Close nerdtree automatically if it is theonly window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" .............................................................................
+" janko/vim-test
+" .............................................................................
+
+let test#strategy='vimterminal'
+
+" let test#elixir#exunit#executable='docker-compose exec -e MIX_ENV=test web mix test'
+let test#elixir#exunit#executable='mix test'
+
+nmap <silent> <leader>n :TestNearest<CR>
+nmap <silent> <leader>f :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
