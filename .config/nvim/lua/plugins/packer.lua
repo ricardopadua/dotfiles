@@ -34,13 +34,11 @@ local function ensure_packer()
     use {'kyazdani42/nvim-web-devicons'}
     use {'kyazdani42/nvim-tree.lua'}
 
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-lua/plenary.nvim'} }}
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-telescope/telescope-fzy-native.nvim', 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'} }}
     
     use {'mfussenegger/nvim-dap'}
     use { "rcarriga/nvim-dap-ui", requires = { {'mfussenegger/nvim-dap'} }}
     use {'jbyuki/one-small-step-for-vimkind'}
-
-    
 
     use {'folke/lsp-colors.nvim'}
 

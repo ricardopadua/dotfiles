@@ -5,10 +5,12 @@
 packer = require('plugins/packer')
 nvim_dap = require('plugins/nvim-dap')
 nvim_tree = require('plugins/nvim-tree')
+telescope = require('plugins/telescope')
 lualine = require('plugins/lualine')
+treesitter = require('plugins/treesitter')
+--cmp = require('plugins/cmp')
 options = require('core/options')
 keymaps = require('core/keymaps')
-
 
 -- ========================================================================== --
 -- ==                               INITIALIZE                             == --
@@ -45,23 +47,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- ==                         PLUGIN CONFIGURATION                         == --
 -- ========================================================================== --
 
----
--- Colorscheme
----
-vim.opt.termguicolors = true
 vim.cmd('colorscheme gruvbox')
-
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
----
--- lualine.nvim (statusline)
----
-vim.opt.showmode = false
 
 require("lsp-colors").setup({
     Error = "#db4b4b",
@@ -70,15 +56,10 @@ require("lsp-colors").setup({
     Hint = "#10B981"
   })
 
-
--- examples for your init.lua
-
--- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
+
 
 -- `on_attach` callback will be called after a language server
 -- instance has been attached to an open buffer with matching filetype
@@ -106,7 +87,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- setting up the elixir language server
 -- you have to manually specify the entrypoint cmd for elixir-ls
 require('lspconfig').elixirls.setup({
-  cmd = { "/home/padua/elixir-ls/release/language_server.sh" },
+  cmd = { "/home/ricardo.padua/elixir-ls/release/language_server.sh" },
   on_attach = on_attach,
   capabilities = capabilities
 })
@@ -161,12 +142,4 @@ cmp.setup({
   })
 })
 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"elixir", "heex", "eex"},
-  sync_install = false,
-  ignore_install = { },
-  highlight = {
-    enable = true,
-    disable = { },
-  },
-}
+
