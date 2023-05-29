@@ -17,11 +17,20 @@ vim.keymap.set({'n', 'x'}, 'cv', '"+p')
 -- Delete text
 vim.keymap.set({'n', 'x'}, 'x', '"_x')
 
--- Commands
-vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
-vim.keymap.set('n', '<leader>bq', '<cmd>bdelete<cr>')
+-- buffer interaction
+vim.keymap.set('n', '<leader>bw', '<cmd>write<cr>')
+vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
 vim.keymap.set('n', '<leader>bl', '<cmd>buffer #<cr>')
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>')
+vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
 
+-- tree toggle
+vim.keymap.set('n', '<leader>tt', '<cmd>:NvimTreeToggle<cr>')
+vim.keymap.set('n', '<leader>tf', '<cmd>:NvimTreeFocus<cr>')
+
+
+-- telescope basic interaction
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
