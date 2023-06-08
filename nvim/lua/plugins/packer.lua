@@ -30,6 +30,8 @@ local function ensure_packer()
     use {'phaazon/hop.nvim'}
     use {'mg979/vim-visual-multi'}
     use {'farmergreg/vim-lastplace'}
+    use {'williamboman/mason.nvim'}
+
 
     use {'kyazdani42/nvim-web-devicons'}
     use {'kyazdani42/nvim-tree.lua'}
@@ -43,6 +45,7 @@ local function ensure_packer()
     use {'folke/lsp-colors.nvim'}
 
     use {'nvim-treesitter/nvim-treesitter'}
+    use { "elixir-tools/elixir-tools.nvim", requires = { "nvim-lua/plenary.nvim" }}
     use {'neovim/nvim-lspconfig'}
     use {'hrsh7th/nvim-cmp'}
     use {'hrsh7th/cmp-nvim-lsp'}
