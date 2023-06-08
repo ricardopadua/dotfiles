@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/ricardo.padua/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  ["elixir-tools.nvim"] = {
+    loaded = true,
+    path = "/home/ricardo.padua/.local/share/nvim/site/pack/packer/start/elixir-tools.nvim",
+    url = "https://github.com/elixir-tools/elixir-tools.nvim"
+  },
   ["gruvbox.nvim"] = {
     loaded = true,
     path = "/home/ricardo.padua/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
@@ -118,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ricardo.padua/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/ricardo.padua/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
