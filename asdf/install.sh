@@ -42,6 +42,13 @@ if ! grep -q 'asdf.bash' ~/.bashrc; then
     echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 fi
 
+# install DroidSansMono Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
+if [ ! -d ~/.fonts ]; then
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
+    unzip DroidSansMono.zip -d ~/.fonts
+    fc-cache -fv
+fi
+
 # Load ASDF into current shell
 source ~/.bashrc
 
