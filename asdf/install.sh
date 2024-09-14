@@ -1,91 +1,89 @@
 #!/bin/bash
+# Ricardo Padua
 
-# Check if the system is Debian-based or Red Hat-based
-if [ -x "$(command -v apt)" ]; then
-    PACKAGE_MANAGER="apt"
-elif [ -x "$(command -v yum)" ]; then
-    PACKAGE_MANAGER="yum"
-elif [ -x "$(command -v dnf)" ]; then
-    PACKAGE_MANAGER="dnf"
-else
-    echo "unsupported package manager."
-    exit 1
-fi
+# Define the ASDF directory for the current user
+ASDF_DIR="$HOME/.asdf"
 
-# Update package manager cache
-if [ "$PACKAGE_MANAGER" == "apt" ]; then
-    sudo apt update
-elif [ "$PACKAGE_MANAGER" == "yum" ]; then
-    sudo yum makecache
-elif [ "$PACKAGE_MANAGER" == "dnf" ]; then
-    sudo dnf makecache
-fi
-
-# Install dependencies
-if [ "$PACKAGE_MANAGER" == "apt" ]; then
-    sudo apt install -y curl git
-elif [ "$PACKAGE_MANAGER" == "yum" ] || [ "$PACKAGE_MANAGER" == "dnf" ]; then
-    sudo $PACKAGE_MANAGER install -y curl git
+# Check if asdf directory already exists
+if [ -d "$ASDF_DIR" ]; then
+  TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+  BACKUP_DIR="${ASDF_DIR}_backup_${TIMESTAMP}"
+  echo "Directory $ASDF_DIR exists. Renaming to $BACKUP_DIR..."
+  mv "$ASDF_DIR" "$BACKUP_DIR"
+  echo "Backup created at $BACKUP_DIR"
 fi
 
 # Clone the ASDF GitHub repository
-if [ ! -d ~/.asdf ]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
+echo "Cloning ASDF repository..."
+git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch v0.14.1
+
+# Define the file to modify
+BASH_FILE="$HOME/.zshrc"
+
+# Define the line to ensure is in the file
+LINE='. "$HOME/.asdf/asdf.sh"'
+
+# Check and update the line in the file
+if grep -qF "$LINE" "$BASH_FILE"; then
+  echo "Line already present: $LINE"
+  # Replace the line if it exists
+  sed -i "s|^\. \"$HOME/.asdf/asdf.sh\"|$LINE|" "$BASH_FILE"
+else
+  echo "Adding line: $LINE"
+  echo "$LINE" >> "$BASH_FILE"
 fi
 
-# Add ASDF to your shell (BASH)
-if ! grep -q 'asdf.sh' ~/.bashrc; then
-    echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+# Reload the configuration
+echo "Loading asdf configuration..."
+. $HOME/.asdf/asdf.sh
+
+# List all installed plugins
+plugins=$(asdf plugin list)
+
+# Check if there are any plugins installed and remove them
+if [ -n "$plugins" ]; then
+  for plugin in $plugins; do
+    echo "Removing plugin: $plugin"
+    asdf plugin remove "$plugin"
+  done
+  echo "All plugins removed."
 fi
 
-if ! grep -q 'asdf.bash' ~/.bashrc; then
-    echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-fi
+echo "Adding Erlang plugin..."
+asdf plugin add erlang
 
-# install DroidSansMono Nerd Font --> u can choose another at: https://www.nerdfonts.com/font-downloads
-if [ ! -d ~/.fonts ]; then
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
-    unzip DroidSansMono.zip -d ~/.fonts
-    fc-cache -fv
-fi
+echo "Adding Elixir plugin..."
+asdf plugin add elixir
 
-# Load ASDF into current shell
-source ~/.bashrc
+echo "Adding Rust plugin..."
+asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
 
-# Install my plugins
-if ! asdf plugin-list | grep -q 'erlang'; then
-      asdf plugin add erlang
-      asdf install erlang 26.0.2
-      asdf global erlang 26.0.2
-fi
+echo "Adding Lua plugin..."
+asdf plugin add lua https://github.com/Stratus3D/asdf-lua.git
 
-if ! asdf plugin-list | grep -q 'elixir'; then
-      asdf plugin add elixir
-      asdf install elixir 1.15.4-otp-26
-      asdf global elixir 1.15.4-otp-26
-fi
+echo "Adding Node.js plugin..."
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
-if ! asdf plugin-list | grep -q 'rust'; then
-      asdf plugin add rust
-      asdf isntall rust 1.71.0
-      asdf global rust 1.71.0
-fi
+echo "Adding Neovim plugin..."
+asdf plugin add neovim
 
-if ! asdf plugin-list | grep -q 'nodejs'; then
-      asdf plugin add nodejs
-      asdf install nodejs 18.17.10
-      asdf global nodejs 18.17.10
-fi
+# Ensure the .tool-versions file exists
+TOOL_VERSIONS_FILE="$HOME/dotfiles/asdf/.tool-versions"
 
-if ! asdf plugin-list | grep -q 'neovim'; then
-      asdf plugin add neovim
-      asdf install neovim 0.9.2
-      asdf global neovim 0.9.2
-fi
+# Install tools specified in .tool-versions
+echo "Installing tools specified in $TOOL_VERSIONS_FILE..."
+cd "$HOME/dotfiles/asdf" && asdf install
+echo "Tools installed."
 
-if ! asdf plugin-list | grep -q 'fzf'; then
-      asdf plugin add fzf
-      asdf install fzf 0.42.0
-      asdf global fzf 0.42.0
-fi
+# Set global versions for tools based on the .tool-versions file
+echo "Setting global tool versions from $TOOL_VERSIONS_FILE..."
+while IFS= read -r line; do
+  tool=$(echo "$line" | cut -d ' ' -f 1)
+  version=$(echo "$line" | cut -d ' ' -f 2)
+  echo "Setting global version for $tool to $version..."
+  asdf global $tool $version
+
+done < "$TOOL_VERSIONS_FILE"
+
+echo "Installation script completed."
 
