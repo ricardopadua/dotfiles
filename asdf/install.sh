@@ -85,5 +85,8 @@ while IFS= read -r line; do
 
 done < "$TOOL_VERSIONS_FILE"
 
+cd ~/.dotfiles/asdf/
+asdf install
 echo "Installation script completed."
+
 
