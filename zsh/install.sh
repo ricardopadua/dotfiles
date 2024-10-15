@@ -4,7 +4,7 @@
 sudo dnf update -y
 
 # Install Zsh
-sudo dnf install zsh fzf -y
+sudo dnf install zsh fzf ripgrep -y
 
 # Check if Zsh was installed successfully
 if ! command -v zsh &> /dev/null; then
