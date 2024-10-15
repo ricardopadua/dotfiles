@@ -33,5 +33,11 @@ if [ -f "tmux/install.sh" ]; then
    cd ..
 fi
 
+if [ -f "nvim/install.sh" ]; then
+   cd nvim
+   ./install.sh
+   cd ..
+fi
+
 echo "Scripts executed successfully."
 
