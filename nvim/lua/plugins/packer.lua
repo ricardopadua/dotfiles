@@ -36,7 +36,7 @@ local function ensure_packer()
     use {'kyazdani42/nvim-web-devicons'}
     use {'kyazdani42/nvim-tree.lua'}
 
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-telescope/telescope-fzy-native.nvim', 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'} }}
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.8', requires = { {'nvim-telescope/telescope-fzy-native.nvim', 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'} }}
     
     use {'mfussenegger/nvim-dap'}
     use { "rcarriga/nvim-dap-ui", requires = { {'mfussenegger/nvim-dap'} }}
