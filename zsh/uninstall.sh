@@ -14,7 +14,7 @@ rm -rf $HOME/.zshrc
 
 # Remove Zsh
 echo "Removing Zsh..."
-sudo dnf remove zsh fzf -y
+sudo dnf remove zsh fzf ripgrep -y
 
 # Remove Zsh configuration
 echo "Removing .fonts..."
