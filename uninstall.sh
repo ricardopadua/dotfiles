@@ -12,8 +12,12 @@ if [ -f "zsh/install.sh" ]; then
   ./zsh/uninstall.sh
 fi
 
-if [ -f "zsh/install.sh" ]; then
+if [ -f "tmux/install.sh" ]; then
   ./tmux/uninstall.sh
+fi
+
+if [ -f "nvim/install.sh" ]; then
+  ./nvim/uninstall.sh
 fi
 
 rm -rfv ~/.dotfiles
