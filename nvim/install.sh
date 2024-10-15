@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Extract and install nvim config
-if [ -f ".init.lua" ]; then
+if [ -f "nvim/.init.lua" ]; then
     echo "move config..."
-    cp -rfvp init.lua 	 ~/.config/nvim/
-    cp -rfvp lua 		 ~/.config/nvim/
-    cp -rfvp plugin		 ~/.config/nvim/
+    cp -rfvp nvim/init.lua 	 ~/.config/nvim/
+    cp -rfvp nvim/lua 		 ~/.config/nvim/
+    cp -rfvp nvim/plugin		 ~/.config/nvim/
     echo "Neovim custom installed."
 fi
 
