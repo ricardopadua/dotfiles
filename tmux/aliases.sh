@@ -50,12 +50,28 @@ tmux_rename() {
 
 # Function for switch to an existing session
 tmux_switch() {
-  if [ -z "$1" ]; then
-    tmux switch-client -n
-  else
-    tmux switch-client -t "$1"
-  fi
+  case "$1" in
+    next|-n)
+      tmux switch-client -n
+      ;;
+    last|-l)
+      tmux switch-client -l
+      ;;
+    *)
+      if [ -z "$1" ]; then
+        echo "Please provide a session name, 'next', or 'last'."
+      else
+        tmux switch-client -t "$1"
+      fi
+      ;;
+  esac
 }
+
+# Function for close to a current window
+tmux_kill_pane() {
+  tmux kill-pane
+}
+
 
 # Dispatcher functions
 ta() tmux_attach "$@"
@@ -65,3 +81,4 @@ tl() tmux_list "$@"
 tn() tmux_new "$@"
 tr() tmux_rename "$@"
 ts() tmux_switch "$@"
+tx() tmux_kill_pane "$@"
