@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  elixir_node_1:
+    build: .
+    container_name: elixir_node_1
+    networks:
+      - elixir_network
+
+  elixir_node_2:
+    build: .
+    container_name: elixir_node_2
+    networks:
+      - elixir_network
+
+  elixir_node_3:
+    build: .
+    container_name: elixir_node_3
+    networks:
+      - elixir_network
+
+  elixir_node_4:
+    build: .
+    container_name: elixir_node_4
+    networks:
+      - elixir_network
+
+networks:
+  elixir_network:
+    driver: bridge
