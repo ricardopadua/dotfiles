@@ -1,10 +1,26 @@
 #!/bin/bash
 
-# Update system packages
-sudo dnf update -y
 
-# Install Zsh
-sudo dnf install zsh fzf ripgrep -y
+# Detect the operating system package manager
+if command -v apk &> /dev/null; then
+    OS="alpine"
+    PKG_INSTALL="apk add --no-cache"
+elif command -v apt &> /dev/null; then
+    OS="debian"
+    PKG_INSTALL="apt update -y && apt install -y"
+elif command -v dnf &> /dev/null; then
+    OS="fedora"
+    PKG_INSTALL="dnf install -y"
+else
+    echo "Unsupported operating system!"
+    exit 1
+fi
+
+echo "Detected OS: $OS"
+
+# Install required packages
+echo "Installing Zsh, fzf, and ripgrep..."
+$PKG_INSTALL zsh fzf ripgrep git curl
 
 # Check if Zsh was installed successfully
 if ! command -v zsh &> /dev/null; then
