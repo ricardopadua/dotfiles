@@ -1,26 +1,60 @@
-version: "3.9"
 services:
   elixir_node_1:
     build: .
     container_name: elixir_node_1
+    hostname: elixir_node_1
+    deploy:
+      resources:
+        limits:
+          memory: 6g
+          cpus: "4"
+        reservations:
+          memory: 3g  
+          cpus: "2"
+    volumes:
+      - ./elixir_node_1:/opt/data
     networks:
       - elixir_network
 
   elixir_node_2:
     build: .
     container_name: elixir_node_2
+    hostname: elixir_node_2
+    deploy:
+      resources:
+        limits:
+          memory: 512m  
+          cpus: "0.5"  
+    volumes:
+      - ./elixir_node_2:/opt/data
     networks:
       - elixir_network
 
   elixir_node_3:
     build: .
     container_name: elixir_node_3
+    hostname: elixir_node_3
+    deploy:
+      resources:
+        limits:
+          memory: 512m  
+          cpus: "0.5"  
+    volumes:
+      - ./elixir_node_3/:/opt/data
     networks:
       - elixir_network
 
   elixir_node_4:
     build: .
     container_name: elixir_node_4
+    hostname: elixir_node_4
+    deploy:
+      resources:
+        limits:
+          memory: 512m  
+          cpus: "0.5"  
+    volumes:
+      - ./elixir_node_4:/opt/data
     networks:
       - elixir_network
 
