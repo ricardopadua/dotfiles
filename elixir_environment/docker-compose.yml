@@ -1,8 +1,20 @@
 services:
   elixir_node_1:
     build: .
-    container_name: elixir_node_1
-    hostname: elixir_node_1
+    container_name: node1
+    hostname: node1
+    environment:
+      - NODE_NAME="n1$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - ERLANG_COOKIE="n1s$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - HOSTNAME=node1
+      - MIX_ENV=dev
+      - APP_VERSION=1.0
+      - API_PORT=4000
+      - EPMD_PORT=4369  
+      - DIST_ERL_PORT_RANGE="50000-60000"
+    ports:
+      - ":4000"
+      - ":4369"
     deploy:
       resources:
         limits:
@@ -12,49 +24,85 @@ services:
           memory: 3g  
           cpus: "2"
     volumes:
-      - ./elixir_node_1:/opt/data
+      - ./node1:/opt/data/development
     networks:
       - elixir_network
 
   elixir_node_2:
     build: .
-    container_name: elixir_node_2
-    hostname: elixir_node_2
+    container_name: node2
+    hostname: node2 
+    environment:
+      - NODE_NAME="n2$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - ERLANG_COOKIE="n2s$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - HOSTNAME=node2
+      - MIX_ENV=dev
+      - APP_VERSION=1.0
+      - API_PORT=4000
+      - EPMD_PORT=4369  
+      - DIST_ERL_PORT_RANGE="50000-60000"
+    ports:
+      - ":4000"  
+      - ":4369"
     deploy:
       resources:
         limits:
           memory: 512m  
           cpus: "0.5"  
     volumes:
-      - ./elixir_node_2:/opt/data
+      - ./elixir_node_2:/opt/data/development
     networks:
       - elixir_network
 
   elixir_node_3:
     build: .
-    container_name: elixir_node_3
-    hostname: elixir_node_3
+    container_name: node3
+    hostname: node3 
+    environment:
+      - NODE_NAME="n3$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - ERLANG_COOKIE="n3s$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - HOSTNAME=node3
+      - MIX_ENV=dev
+      - APP_VERSION=1.0
+      - API_PORT=4000
+      - EPMD_PORT=4369  
+      - DIST_ERL_PORT_RANGE="50000-60000"
+    ports:
+      - ":4000"
+      - ":4369"
     deploy:
       resources:
         limits:
           memory: 512m  
           cpus: "0.5"  
     volumes:
-      - ./elixir_node_3/:/opt/data
+      - ./elixir_node_3/:/opt/data/development
     networks:
       - elixir_network
 
   elixir_node_4:
     build: .
-    container_name: elixir_node_4
-    hostname: elixir_node_4
+    container_name: node4
+    hostname: node4 
+    environment:
+      - NODE_NAME="n4$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - ERLANG_COOKIE="n4s$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
+      - HOSTNAME=node4
+      - MIX_ENV=dev
+      - APP_VERSION=1.0
+      - API_PORT=4000
+      - EPMD_PORT=4369  
+      - DIST_ERL_PORT_RANGE="50000-60000"
+    ports:
+      - ":4000" 
+      - ":4369"
     deploy:
       resources:
         limits:
           memory: 512m  
           cpus: "0.5"  
     volumes:
-      - ./elixir_node_4:/opt/data
+      - ./elixir_node_4:/opt/data/development
     networks:
       - elixir_network
 
