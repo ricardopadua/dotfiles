@@ -1,5 +1,5 @@
-ARG ELIXIR_VERSION=1.16.3
-ARG OTP_VERSION=26
+ARG ELIXIR_VERSION=1.17.3
+ARG OTP_VERSION=27
 ARG DEV_IMAGE="elixir:${ELIXIR_VERSION}-otp-${OTP_VERSION}-alpine"
 
 FROM ${DEV_IMAGE} AS dev
@@ -62,5 +62,5 @@ EXPOSE ${API_PORT}
 EXPOSE ${EPMD_PORT}
 EXPOSE ${DIST_ERL_PORT_RANGE}
 
-CMD sh -c "iex --sname ${NODE_NAME}@${HOSTNAME} --cookie $ERLANG_COOKIE"
+CMD sh -c "exec iex --sname ${NODE_NAME}@${HOSTNAME} --cookie $ERLANG_COOKIE --erl '-noshell -noinput +Bd'"
 

@@ -1,8 +1,50 @@
 services:
+  db:
+    image: 'postgres:13.0-alpine' 
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: epc
+      PGDATA: /tmp
+    hostname: db
+    ports:
+      - "5432:5432"
+    networks:
+      - elixir_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - './docker-volumes/postgres/data:/var/lib/postgresql/data'
+      
+  livebook:
+    image: 'ghcr.io/livebook-dev/livebook:0.14.7' 
+    container_name: livebook
+    restart: always
+    hostname: livebook
+    depends_on:
+      - db
+    environment:
+      LIVEBOOK_PASSWORD: Livebook@0147
+      LIVEBOOK_PORT: 4000
+    ports:
+      - "4000:4000"
+    networks:
+      - elixir_network
+    volumes:
+      - './docker-volumes/livebook/data:/data/livebook'
+
   elixir_node_1:
     build: .
     container_name: node1
     hostname: node1
+    depends_on:
+      - db
     environment:
       - NODE_NAME="n1$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
       - ERLANG_COOKIE="n1s$(cat /proc/sys/kernel/random/uuid | cut -c1-8)"
@@ -24,7 +66,7 @@ services:
           memory: 3g  
           cpus: "2"
     volumes:
-      - ./node1:/opt/data/development
+      - ./docker-volumes/node1:/opt/data/development
     networks:
       - elixir_network
 
@@ -50,7 +92,7 @@ services:
           memory: 512m  
           cpus: "0.5"  
     volumes:
-      - ./elixir_node_2:/opt/data/development
+      - ./docker-volumes/elixir_node_2:/opt/data/development
     networks:
       - elixir_network
 
@@ -76,7 +118,7 @@ services:
           memory: 512m  
           cpus: "0.5"  
     volumes:
-      - ./elixir_node_3/:/opt/data/development
+      - ./docker-volumes/elixir_node_3/:/opt/data/development
     networks:
       - elixir_network
 
@@ -102,7 +144,7 @@ services:
           memory: 512m  
           cpus: "0.5"  
     volumes:
-      - ./elixir_node_4:/opt/data/development
+      - ./docker-volumes/elixir_node_4:/opt/data/development
     networks:
       - elixir_network
 
