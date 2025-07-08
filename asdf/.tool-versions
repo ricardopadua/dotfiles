@@ -1,6 +1,6 @@
 elixir 1.18.4-otp-27                                                                                 
 erlang 27.3                                                                                        
-rust 1.80.0                                                                                           
+rust 1.88.0                                                                                           
 nodejs 22.8.0                                                                            
 neovim 0.10.1   
 lua 5.4.7
