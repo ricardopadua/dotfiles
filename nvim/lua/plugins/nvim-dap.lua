@@ -8,7 +8,7 @@ local M = {}
 M.elixir_setup = function()
     dap.adapters.mix_task = {
         type = 'executable',
-        command = '/home/ricardo.padua/elixir-ls/release/debugger.sh',
+        command = '~/elixir-ls/release/debugger.sh',
         args = {}
       }
 
