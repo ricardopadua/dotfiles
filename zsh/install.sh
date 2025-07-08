@@ -19,8 +19,8 @@ fi
 echo "Detected OS: $OS"
 
 # Install required packages
-echo "Installing Zsh, fzf, and ripgrep..."
-$PKG_INSTALL zsh fzf ripgrep git curl
+echo "Installing Zsh, fontconfig, fzf, and ripgrep..."
+$PKG_INSTALL zsh fzf fontconfig ripgrep git curl
 
 # Check if Zsh was installed successfully
 if ! command -v zsh &> /dev/null; then
