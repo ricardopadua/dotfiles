@@ -1,8 +1,13 @@
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+
 -- ========================================================================== --
 -- ==                           EDITOR SETTINGS                            == --
 -- ========================================================================== --
 
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.opt.hlsearch = false
 vim.opt.wrap = true
 vim.opt.breakindent = true
@@ -20,7 +25,6 @@ vim.opt.backupdir = vim.fn.expand("~/.tmp/backup")
 vim.opt.directory = vim.fn.expand("~/.tmp/swp")
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.lazyredraw = true
 vim.opt.showmode = false
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
