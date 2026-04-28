@@ -9,8 +9,8 @@ return {
       local actions = require("telescope.actions")
 
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
-        prompt_prefix = "🔍 ",
-        selection_caret = "> ",
+        prompt_prefix = " 󰍉 ",
+        selection_caret = "❯ ",
         entry_prefix = "  ",
         sorting_strategy = "descending",
         layout_config = {
