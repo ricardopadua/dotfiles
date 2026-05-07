@@ -9,7 +9,7 @@ local function open_workspace()
     cwd = workspace_path,
     prompt_title = "Select Project",
     -- use rust to install fd and ripgrep (cargo install fd-find ripgrep)
-    find_command = { "fd", "--type", "d", "--max-depth", "1", "--strip-cwd-prefix" },
+    find_command = { "fd", "--type", "d", "--max-depth", "2", "--strip-cwd-prefix" },
     attach_mappings = function(prompt_bufnr, map)
       local actions = require("telescope.actions")
       local action_state = require("telescope.actions.state")
@@ -40,7 +40,7 @@ return {
         sections = {
           { section = "header" },
           { section = "keys", gap = 1, padding = 1 },
-          -- { text = "⚡ Leruaite Environment ⚡", align = "center", padding = 1, hl = "DiagnosticInfo" },
+          { text = "⚡ Leruaite Environment ⚡", align = "center", padding = 1, hl = "DiagnosticInfo" },
           -- { icon = "󰉋 ", title = "Projects Active", section = "projects", indent = 2, padding = 1 },
           -- { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
           -- { section = "terminal", cmd = "date +'%A, %d de %B'", hl = "Keyword", ttl = 3600, padding = 1, align = "center" },
