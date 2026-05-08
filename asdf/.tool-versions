@@ -1,5 +1,7 @@
 elixir 1.19.5-otp-28                                                                                 
 erlang 28.5                                                                                        
+dotnet-core 10.0.203
 rust 1.95.0
+golang 1.26.3
 neovim 0.12.2   
 lua 5.5.0

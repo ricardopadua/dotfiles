@@ -50,10 +50,10 @@ if [ -n "$plugins" ]; then
 fi
 
 echo "Adding Erlang plugin..."
-asdf plugin add erlang
+asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 
 echo "Adding Elixir plugin..."
-asdf plugin add elixir
+asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
 
 echo "Adding Rust plugin..."
 asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
@@ -64,8 +64,14 @@ asdf plugin add lua https://github.com/Stratus3D/asdf-lua.git
 echo "Adding Node.js plugin..."
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
+echo "Adding Golang plugin..."
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+
+echo "Adding Dotnet plugin..."
+asdf plugin add dotnet-core https://github.com/emersonsoares/asdf-dotnet-core.git
+
 echo "Adding Neovim plugin..."
-asdf plugin add neovim
+asdf plugin add neovim https://github.com/richin13/asdf-neovim.git
 
 # Ensure the .tool-versions file exists
 TOOL_VERSIONS_FILE="$HOME/dotfiles/asdf/.tool-versions"
