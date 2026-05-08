@@ -1,41 +1,31 @@
 #!/bin/bash
 
-REPO_URL=https://github.com/ricardopadua/dotfiles
-DIR_NAME=~/.dotfiles
+DOTFILES_REPO="$1"
+DOTFILES_DIR="$2"
 
-# Clone the repository
-git clone "$REPO_URL" ~/.dotfiles
+mkdir -p "$(dirname "$DOTFILES_DIR")"
+mkdir -p ~/.config
 
-# Check if the clone was successful
-if [ $? -ne 0 ]; then
-  echo "Failed to clone the repository."
-  exit 1
+if [ -d "$DOTFILES_DIR" ]; then
+  TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+  BACKUP_DIR="${DOTFILES_DIR}_backup_${TIMESTAMP}"
+  echo "Backing up existing directory to $BACKUP_DIR"
+  mv "$DOTFILES_DIR" "$BACKUP_DIR"
 fi
 
-cd "$DIR_NAME" || exit
+echo "Cloning..."
+git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 
-if [ -f "asdf/install.sh" ]; then
-   cd asdf
-   ./install.sh
-   asdf install
-   cd ..
-fi
+safe_link() {
+  TARGET="$1"
+  SOURCE="$2"
 
-if [ -f "zsh/install.sh" ]; then
-   cd zsh
-   ./install.sh
-   cd ..
-fi
+  [ -L "$TARGET" ] || [ -e "$TARGET" ] && rm -rf "$TARGET"
+  ln -sf "$SOURCE" "$TARGET"
+}
 
-if [ -f "tmux/install.sh" ]; then
-   cd tmux
-   ./install.sh
-   cd ..
-fi
+safe_link "$HOME/.tmux.conf" "$DOTFILES_DIR/tmux/.tmux.conf"
+safe_link "$HOME/.config/alacritty" "$DOTFILES_DIR/alacritty"
+safe_link "$HOME/.config/nvim" "$DOTFILES_DIR/nvim"
 
-if [ -f "nvim/install.sh" ]; then
-   mv nvim ~/.config/
-fi
-
-echo "Scripts executed successfully."
 

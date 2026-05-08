@@ -1,5 +1,5 @@
-elixir 1.18.4-otp-27                                                                                 
-erlang 27.3                                                                                        
-rust 1.88.0
-neovim 0.10.1   
-lua 5.4.7
+elixir 1.19.5-otp-28                                                                                 
+erlang 28.5                                                                                        
+rust 1.95.0
+neovim 0.12.2   
+lua 5.5.0
