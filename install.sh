@@ -2,17 +2,6 @@
 
 set -e
 
-echo "Updating packages..."
-
-echo "Installing dependencies..."
-#sudo dnf install -y \
-#  autoconf \
-#  gcc \
-#  ncurses-devel \
-#  make \
-#  openssl-devel \
-#  gcc-c++
-
 DOTFILES_REPO="$1"
 DOTFILES_DIR="$2"
 SCRIPT_DIR="$DOTFILES_DIR"
@@ -36,6 +25,7 @@ safe_link() {
   fi
 
   mkdir -p "$(dirname "$TARGET")"
+  mkdir -p "$(dirname "$HOME/Development")"
 
   ln -sfn "$SOURCE" "$TARGET"
 }
@@ -45,4 +35,5 @@ safe_link "$HOME/.config/alacritty" "$DOTFILES_DIR/alacritty"
 safe_link "$HOME/.config/nvim" "$DOTFILES_DIR/nvim"
 safe_link "$HOME/.local/share/fonts" "$DOTFILES_DIR/zsh/fonts"
 
+bash "$SCRIPT_DIR/asdf/install.sh"
 bash "$SCRIPT_DIR/zsh/install.sh"

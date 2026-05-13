@@ -13,8 +13,14 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zs
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
-chsh -s $(which zsh)
+if command -v zsh >/dev/null 2>&1; then
+  echo "Setting zsh as default shell..."
+  grep -qxF 'exec zsh' ~/.bashrc || echo 'exec zsh' >>~/.bashrc
+  chsh -s "$(which zsh)"
+fi
+
 fc-cache -fv
-cp ./.zshrc "$HOME/.zshrc"
+cp "$HOME/.dotfiles/zsh/.zshrc" "$HOME/.zshrc"
+cp "$HOME/.dotfiles/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
 echo "Installation completed! You may need to restart your terminal or log out and log back in."

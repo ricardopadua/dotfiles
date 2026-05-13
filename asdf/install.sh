@@ -1,5 +1,13 @@
 #!/bin/bash
-# Ricardo Padua
+
+echo "Installing dependencies..."
+sudo dnf install -y \
+  autoconf \
+  gcc \
+  ncurses-devel \
+  make \
+  openssl-devel \
+  gcc-c++
 
 # Define the ASDF directory for the current user
 ASDF_DIR="$HOME/.asdf"
@@ -30,12 +38,13 @@ if grep -qF "$LINE" "$BASH_FILE"; then
   sed -i "s|^\. \"$HOME/.asdf/asdf.sh\"|$LINE|" "$BASH_FILE"
 else
   echo "Adding line: $LINE"
-  echo "$LINE" >> "$BASH_FILE"
+  echo "$LINE" >>"$BASH_FILE"
 fi
 
 # Reload the configuration
 echo "Loading asdf configuration..."
-. $HOME/.asdf/asdf.sh
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
 
 # List all installed plugins
 plugins=$(asdf plugin list)
@@ -74,11 +83,11 @@ echo "Adding Neovim plugin..."
 asdf plugin add neovim https://github.com/richin13/asdf-neovim.git
 
 # Ensure the .tool-versions file exists
-TOOL_VERSIONS_FILE="$HOME/dotfiles/asdf/.tool-versions"
+TOOL_VERSIONS_FILE="$HOME/.dotfiles/asdf/.tool-versions"
 
 # Install tools specified in .tool-versions
 echo "Installing tools specified in $TOOL_VERSIONS_FILE..."
-cd "$HOME/dotfiles/asdf" && asdf install
+cd "$HOME/.dotfiles/asdf" && asdf install
 echo "Tools installed."
 
 # Set global versions for tools based on the .tool-versions file
@@ -89,10 +98,8 @@ while IFS= read -r line; do
   echo "Setting global version for $tool to $version..."
   asdf global $tool $version
 
-done < "$TOOL_VERSIONS_FILE"
+done <"$TOOL_VERSIONS_FILE"
 
 cd ~/.dotfiles/asdf/
 asdf install
 echo "Installation script completed."
-
-
