@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=DeskFlow
+GenericName=Mouse and Keyboard Sharing
+Comment=Share your mouse and keyboard between multiple computers over the network
+Exec=/opt/Deskflow/bin/deskflow
+Icon=deskflow
+Terminal=false
+Type=Application
+Categories=Utility;Development;System;
+Keywords=synergy;barrier;deskflow;kvm;share;

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Excalidraw
+GenericName=Whiteboard Tool
+Comment=Hand-drawn feel whiteboard for diagrams and sketching
+Exec=/opt/Excalidraw/excalidraw-linux-amd64.AppImage --enable-features=UseOzonePlatform --ozone-platform=wayland
+Icon=excalidraw
+Terminal=false
+Type=Application
+Categories=Graphics;Development;Design;
+Keywords=diagram;sketch;whiteboard;

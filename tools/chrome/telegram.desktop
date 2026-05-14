@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Telegram
+Comment=Telegram Web
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app=https://web.telegram.org
+Icon=telegram
+Terminal=false
+Categories=Network;Chat;
+StartupNotify=true

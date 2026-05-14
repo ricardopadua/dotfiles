@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Livebook
+GenericName=Interactive Code Notebook
+Comment=Interactive and collaborative code notebooks for Elixir
+Exec=/opt/Livebook/Livebook-linux-amd64.AppImage --enable-features=UseOzonePlatform --ozone-platform=wayland
+Icon=livebook
+Terminal=false
+Type=Application
+Categories=Development;Education;Programming;
+Keywords=elixir;notebook;livebook;coding;
