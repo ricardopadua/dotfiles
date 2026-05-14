@@ -1,0 +1,41 @@
+[Desktop Entry]
+Version=1.0
+Name=Headlamp
+GenericName=Kubernetes Dashboard
+Comment=Kubernetes Desktop UI
+Exec=/usr/bin/headlamp
+Icon=headlamp
+Terminal=false
+Type=Application
+Categories=Development;System;Network;
+StartupNotify=true
+Keywords=kubernetes;k8s;cluster;kubectl;
+
+Name[cs]=Headlamp
+Name[ca]=Headlamp
+Name[fi]=Headlamp
+Name[fr]=Headlamp
+Name[pl]=Headlamp
+Name[pt_BR]=Headlamp
+Name[sv]=Headlamp
+
+GenericName[cs]=Dashboard Kubernetes
+GenericName[ca]=Tauler de Kubernetes
+GenericName[fi]=Kubernetes-hallintapaneeli
+GenericName[fr]=Tableau de bord Kubernetes
+GenericName[it]=Dashboard Kubernetes
+GenericName[ja]=Kubernetes ダッシュボード
+GenericName[pl]=Panel Kubernetes
+GenericName[pt_BR]=Painel Kubernetes
+GenericName[sv]=Kubernetes-instrumentpanel
+
+Comment[ca]=Interfície gráfica para gerenciamento de clusters Kubernetes
+Comment[cs]=Grafické rozhraní pro správu Kubernetes clusterů
+Comment[de]=Grafische Oberfläche zur Verwaltung von Kubernetes-Clustern
+Comment[fi]=Graafinen käyttöliittymä Kubernetes-klustereiden hallintaan
+Comment[fr]=Interface graphique pour gérer les clusters Kubernetes
+Comment[it]=Interfaccia grafica per gestire cluster Kubernetes
+Comment[ja]=Kubernetes クラスター管理用のグラフィカルインターフェース
+Comment[pl]=Graficzny interfejs do zarządzania klastrami Kubernetes
+Comment[pt_BR]=Interface gráfica para gerenciamento de clusters Kubernetes
+Comment[sv]=Grafiskt gränssnitt för hantering av Kubernetes-kluster

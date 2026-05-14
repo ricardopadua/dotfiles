@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WhatsApp
+Comment=WhatsApp Web
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app=https://web.whatsapp.com
+Icon=whatsApp
+Terminal=false
+Categories=Network;Chat;
+StartupNotify=true

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Pomatez
+Exec=/opt/Pomatez/pomatez %U
+Terminal=false
+Type=Application
+Icon=pomatez
+StartupWMClass=Pomatez
+Comment=Attractive pomodoro timer for Windows, Mac, and Linux.
+Categories=Utility;

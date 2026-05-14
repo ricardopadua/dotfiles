@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Draw.io
+GenericName=Diagram Software
+Comment=Create and share diagrams
+Exec=/opt/Draw.io/Draw.io-linux-amd64.AppImage --enable-features=UseOzonePlatform --ozone-platform=wayland
+Icon=drawio
+Terminal=false
+Type=Application
+Categories=Graphics;Development;Design;
+Keywords=drawio;diagram;charts;uml;

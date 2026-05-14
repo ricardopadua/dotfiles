@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Anytype
+GenericName=Knowledge Base
+Comment=Local-first, secure tool for notes, tasks, and ideas
+Exec=/opt/Anytype/Anytype-linux-amd64.AppImage --enable-features=UseOzonePlatform --ozone-platform=wayland
+Icon=anytype
+Terminal=false
+Type=Application
+Categories=Office;Utility;Development;
+Keywords=notes;knowledge;database;anytype;
+
+
+
