@@ -39,7 +39,7 @@ opt.sidescrolloff  = 8             -- Keep 8 columns visible left/right of curso
 -------------------------------------------------------------------------------
 opt.hlsearch       = false         -- No persistent highlights after search
 opt.incsearch      = true          -- Visual feedback while typing search
-opt.ignorecase     = true          -- Case insensitive search...
+opt.ignorecase     = false          -- Case insensitive search...
 opt.smartcase      = true          -- ...unless uppercase is used
 opt.inccommand     = "split"       -- Live preview of substitutions in a split window
 
