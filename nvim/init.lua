@@ -6,6 +6,8 @@ require("config.lazy")
 vim.g.mapleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.o.title = true
+vim.o.titlestring = "Neovim"
 
 vim.g.clipboard = {
   name = "wl-utils",
