@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$1"
+
 echo "Installing packages..."
 sudo dnf install -y zsh alacritty fontconfig git curl
 
@@ -20,7 +22,7 @@ if command -v zsh >/dev/null 2>&1; then
 fi
 
 fc-cache -fv
-cp "$HOME/.dotfiles/zsh/.zshrc" "$HOME/.zshrc"
-cp "$HOME/.dotfiles/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
+cp "$SCRIPT_DIR/zsh/.zshrc" "$HOME/.zshrc"
+cp "$SCRIPT_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 
 echo "Installation completed! You may need to restart your terminal or log out and log back in."

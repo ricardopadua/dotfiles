@@ -21,4 +21,14 @@ source $ZSH/oh-my-zsh.sh
 
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
+. "$HOME/Development/lab/dotfiles/tmux/aliases.sh"
 
+export AWS_PROFILE="devops"
+export PATH=$HOME/.local/bin:$PATH
+
+alias k=kubectl
+
+# alias
+aws_ecr_url() { export ECR_REPO_URL=$(aws ecr describe-repositories --region "${1:-sa-east-1}" --query 'repositories[0].repositoryUri' --output text | cut -d/ -f1); }
+aws_ecr_login() { local r="${1:-sa-east-1}"; aws_ecr_url "$r"; aws ecr get-login-password --region "$r" | podman login --username AWS --password-stdin "$ECR_REPO_URL"; }
+load_env() { export $(grep -v '^#' .env | xargs) }

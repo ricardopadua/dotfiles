@@ -35,5 +35,5 @@ safe_link "$HOME/.config/alacritty" "$DOTFILES_DIR/alacritty"
 safe_link "$HOME/.config/nvim" "$DOTFILES_DIR/nvim"
 safe_link "$HOME/.local/share/fonts" "$DOTFILES_DIR/zsh/fonts"
 
-bash "$SCRIPT_DIR/asdf/install.sh"
-bash "$SCRIPT_DIR/zsh/install.sh"
+bash "$SCRIPT_DIR/asdf/install.sh" "$SCRIPT_DIR"
+bash "$SCRIPT_DIR/zsh/install.sh" "$SCRIPT_DIR"

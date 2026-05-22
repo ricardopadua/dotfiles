@@ -46,18 +46,6 @@ echo "Loading asdf configuration..."
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
 
-# List all installed plugins
-plugins=$(asdf plugin list)
-
-# Check if there are any plugins installed and remove them
-if [ -n "$plugins" ]; then
-  for plugin in $plugins; do
-    echo "Removing plugin: $plugin"
-    asdf plugin remove "$plugin"
-  done
-  echo "All plugins removed."
-fi
-
 echo "Adding Erlang plugin..."
 asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 
@@ -83,11 +71,11 @@ echo "Adding Neovim plugin..."
 asdf plugin add neovim https://github.com/richin13/asdf-neovim.git
 
 # Ensure the .tool-versions file exists
-TOOL_VERSIONS_FILE="$HOME/.dotfiles/asdf/.tool-versions"
+TOOL_VERSIONS_FILE="$SCRIPT_DIR/asdf/.tool-versions"
 
 # Install tools specified in .tool-versions
 echo "Installing tools specified in $TOOL_VERSIONS_FILE..."
-cd "$HOME/.dotfiles/asdf" && asdf install
+cd "$SCRIPT_DIR/asdf" && asdf install
 echo "Tools installed."
 
 # Set global versions for tools based on the .tool-versions file
@@ -99,7 +87,3 @@ while IFS= read -r line; do
   asdf global $tool $version
 
 done <"$TOOL_VERSIONS_FILE"
-
-cd ~/.dotfiles/asdf/
-asdf install
-echo "Installation script completed."
