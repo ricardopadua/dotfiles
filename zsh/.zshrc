@@ -31,4 +31,5 @@ alias k=kubectl
 # alias
 aws_ecr_url() { export ECR_REPO_URL=$(aws ecr describe-repositories --region "${1:-sa-east-1}" --query 'repositories[0].repositoryUri' --output text | cut -d/ -f1); }
 aws_ecr_login() { local r="${1:-sa-east-1}"; aws_ecr_url "$r"; aws ecr get-login-password --region "$r" | podman login --username AWS --password-stdin "$ECR_REPO_URL"; }
+kbash() { k exec -it $(k get pods -o name | grep "$1" | head -n 1) -- /bin/bash }
 load_env() { export $(grep -v '^#' .env | xargs) }
