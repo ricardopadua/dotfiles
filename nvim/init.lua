@@ -5,9 +5,10 @@ require("config.lazy")
 
 vim.g.mapleader = ' '
 vim.g.loaded_netrw = 1
+vim.opt.title = true
+vim.opt.titlestring = "Neovim"
+
 vim.g.loaded_netrwPlugin = 1
-vim.o.title = true
-vim.o.titlestring = "Neovim"
 
 vim.g.clipboard = {
   name = "wl-utils",
@@ -41,4 +42,11 @@ if is_ssh then
       ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
     },
   }
+end
+
+if vim.g.neovide == true then
+    -- vim.cmd 'set guifont=Hack\ NF:h10'
+    -- vim.o.guifont='Consolas:h10'
+    -- vim.o.guifont='FiraCode NF:h14'
+    vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
 end
